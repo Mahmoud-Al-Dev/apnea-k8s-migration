@@ -46,17 +46,22 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.30"
 
-  # Allow public endpoint access for kubectl from your local machine
   cluster_endpoint_public_access = true
+
+  # --------------------------------------------------------
+  # Disable Enterprise Logging & KMS to save budget
+  # --------------------------------------------------------
+  create_kms_key              = false
+  cluster_encryption_config   = {}
+  create_cloudwatch_log_group = false
+  # --------------------------------------------------------
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
-  # Enables IAM Cluster Administrator access for your current AWS identity
   enable_cluster_creator_admin_permissions = true
 
   eks_managed_node_groups = {
-    # Budget-friendly worker node specification
     app_nodes = {
       min_size     = 1
       max_size     = 2
@@ -65,7 +70,6 @@ module "eks" {
       instance_types = ["t3.medium"]
       capacity_type  = "ON_DEMAND"
 
-      # Attach the policy allowing nodes to download your containers from ECR
       iam_role_additional_policies = {
         AmazonEC2ContainerRegistryReadOnly = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
         AmazonS3ReadOnlyAccess             = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
