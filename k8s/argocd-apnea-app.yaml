@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Mahmoud-Al-Dev/apnea-k8s-migration.git'
-    targetRevision: HEAD
+    repoURL: 'https://github.com/Mahmoud-Al-Dev/apnea-k8s-migration'
+    targetRevision: main
     path: k8s # ArgoCD will scan this folder for YAML files to deploy
   destination:
     server: 'https://kubernetes.default.svc' # Deploys to the local EKS cluster
