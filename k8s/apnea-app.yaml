@@ -16,12 +16,11 @@ spec:
       labels:
         app: apnea-app
     spec:
-      # The IAM role we attached to your worker nodes in Terraform gives them S3 access
       initContainers:
       - name: fetch-ml-weights
         image: amazon/aws-cli:latest
         command: ["/bin/sh", "-c"]
-        # Pulls the weights from S3 and places them in our temporary shared volume
+        # Pulls the weights from S3 and places them in temporary shared volume
         args:
           - |
             aws s3 cp s3://apnea-api-ml-weights-676206922033/penta_lstm_OSA_weights.pth /shared-weights/
@@ -39,7 +38,7 @@ spec:
           name: api-port
         - containerPort: 8501
           name: ui-port
-        # Maps the files from the shared volume directly to where your app expects them
+        # Maps the files from the shared volume directly to where the app expects them
         volumeMounts:
         - name: model-weights-volume
           mountPath: /app/penta_lstm_OSA_weights.pth

@@ -1,4 +1,4 @@
-name: Apnea MLOps Pipeline (CI/CD)
+name: Apnea MLOps K8S Pipeline (CI/CD)
 
 on:
   push:
