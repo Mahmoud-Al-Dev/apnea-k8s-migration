@@ -108,11 +108,13 @@ jobs:
           terraform init
           terraform apply -auto-approve -var='ssh_cidrs=["${{ secrets.MY_HOME_IP }}", "${{ env.runner_ip }}/32"]'
 
-      # 8. Run Ansible
-      - name: ⚙️ Install Ansible
-        run: sudo apt-get update && sudo apt-get install -y ansible
-
-      - name: 🚢 Run Configuration Management (Ansible)
+      # 8. Connect the GitHub Runner to the new EKS Cluster
+      - name: ☸️ Authenticate with EKS Cluster
         run: |
-          chmod +x deploy.sh
-          ./deploy.sh
+          aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name apnea-api-eks-cluster
+          
+      # 9. Deploy the Application Manifests!
+      - name: 🚀 Deploy App to Kubernetes
+        run: |
+          kubectl apply -f k8s/apnea-app.yaml
+          kubectl rollout status deployment/apnea-app-deployment --timeout=120s
