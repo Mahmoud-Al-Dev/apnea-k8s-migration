@@ -1,30 +1,21 @@
-# k8s/nexus-values.yaml
 deployment:
-  # Nexus runs on the JVM and is memory-hungry. We must give it enough RAM.
   resources:
     requests:
       cpu: 1000m
       memory: 2Gi
-    limits:
-      cpu: 2000m
-      memory: 4Gi
 
 nexus:
+  # 1. Turn off Docker to bypass the strict TLS/Domain Name requirements
   docker:
-    enabled: true
-    registries:
-      - port: 5000
-        secretName: ingress-tls # Docker requires HTTPS to push images securely
+    enabled: false
+
+# 2. Turn off Ingress to bypass the K8s version mismatch error
+ingress:
+  enabled: false
+
+# 3. Use a standard AWS LoadBalancer 
+service:
+  type: LoadBalancer
 
 persistence:
-  enabled: true
-  storageClass: "gp2" # Uses standard AWS EBS volumes
-  accessMode: ReadWriteOnce
-  size: 20Gi # Enough space to hold your ML images
-
-ingress:
-  enabled: true
-  targetPort: 8081
-  annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
+  enabled: false
