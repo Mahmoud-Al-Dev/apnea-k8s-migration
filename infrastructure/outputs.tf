@@ -1,9 +1,11 @@
-output "api_public_ip" {
-  value = aws_instance.api.public_ip
+output "cluster_name" {
+  value       = module.eks.cluster_name
+  description = "The name of the EKS cluster to pass to the aws cli command"
 }
 
-output "api_docs_url" {
-  value = "http://${aws_instance.api.public_ip}:${var.container_port}/docs"
+output "cluster_endpoint" {
+  value       = module.eks.cluster_endpoint
+  description = "The endpoint URL for your Kubernetes API server"
 }
 
 output "weights_bucket_name" {
@@ -12,11 +14,6 @@ output "weights_bucket_name" {
 }
 
 output "ecr_registry_url" {
-  value       = local.ecr_registry
+  value       = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${var.aws_region}.amazonaws.com"
   description = "The URL of the AWS ECR registry"
-}
-
-output "ecr_image_url" {
-  value       = local.ecr_image
-  description = "The full URL of the ECR image including the latest tag"
 }

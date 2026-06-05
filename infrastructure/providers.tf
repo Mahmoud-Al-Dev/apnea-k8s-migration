@@ -22,7 +22,6 @@ terraform {
 
 provider "aws" {
   region     = var.aws_region
-  # Pull the credentials from the Vault data block defined in main.tf
   access_key = data.vault_generic_secret.aws_creds.data["access_key"]
   secret_key = data.vault_generic_secret.aws_creds.data["secret_key"]
 }
