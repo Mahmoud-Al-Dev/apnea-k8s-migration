@@ -1,4 +1,4 @@
-# 🫁 Apnea Detection Kubernetes & GitOps Pipeline
+# Apnea Detection Kubernetes & GitOps Pipeline
 
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
 ![AWS EKS](https://img.shields.io/badge/AWS_EKS-%23FF9900.svg?style=for-the-badge&logo=amazonaws&logoColor=white)
@@ -9,16 +9,16 @@
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=Prometheus&logoColor=white)
 ![Grafana](https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white)
 
-## 🎯 Final Application Result
+## Final Application Result
 
 <img width="3423" height="1758" alt="Screenshot from 2026-06-05 21-18-33" src="https://github.com/user-attachments/assets/1c0656cd-44bd-45e6-9bc5-a0b4831d8058" />
-## 📌 Technical Project Overview
+## Technical Project Overview
 
 This project demonstrates an enterprise-grade, highly available MLOps lifecycle for a clinical sleep apnea diagnostic tool. It transitions the application from a traditional instance-based deployment to a fully orchestrated **Kubernetes (EKS)** environment. 
 
 By implementing the **GitOps** methodology, Infrastructure-as-Code (IaC), and a comprehensive observability stack, this pipeline ensures that the deep learning inference engine (FastAPI) and interactive frontend (Streamlit) are resilient, self-healing, and continuously synchronized with the source repository.
 
-## ⚙️ GitOps & Automation Workflow
+## GitOps & Automation Workflow
 
 The architecture utilizes a decoupled CI/CD pattern to completely separate continuous integration from continuous deployment, ensuring maximum security and state consistency:
 
@@ -31,7 +31,7 @@ The architecture utilizes a decoupled CI/CD pattern to completely separate conti
 <img width="3237" height="1125" alt="Screenshot from 2026-06-05 21-17-16" src="https://github.com/user-attachments/assets/d0166831-e00d-4d3f-a727-c11c85b62cd0" />
 <img width="3502" height="1762" alt="Screenshot from 2026-06-05 21-16-38" src="https://github.com/user-attachments/assets/53551299-3be5-4b0b-982a-82523f9607ff" />
 
-## 🛠️ Infrastructure & Observability Deep Dive
+## Infrastructure & Observability Deep Dive
 
 A production AI system requires constant monitoring to track inference latency, hardware utilization, and potential bottlenecks. This deployment leverages the **"App of Apps"** GitOps pattern to inject a full enterprise monitoring suite:
 
@@ -41,7 +41,7 @@ A production AI system requires constant monitoring to track inference latency, 
 
 <img width="3560" height="1798" alt="Screenshot from 2026-06-05 21-15-48" src="https://github.com/user-attachments/assets/9e1abccc-299d-4b9d-bc03-d1ee3eafeb32" />
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```text
 apnea-k8s-migration/
