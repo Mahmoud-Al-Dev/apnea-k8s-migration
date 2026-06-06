@@ -17,4 +17,7 @@ venv/
 
 # Machine Learning Weights
 *.pth
-*.pt
+*.ptdevops_env/
+
+# Local virtual environment
+devops_env/
